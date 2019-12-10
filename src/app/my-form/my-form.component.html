@@ -1,0 +1,22 @@
+{{ values$ | async }}
+<form [formGroup]="myForm" #form="ngForm" (ngSubmit)="handleSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="name" type="text" />
+    <mat-error *ngIf="name?.touched && name.hasError('minlength')"
+      >Name is too short</mat-error
+    >
+  </mat-form-field>
+  <br />
+  <button [disabled]="!myForm.valid" mat-raised-button type="submit">
+    Submit
+  </button>
+</form>
+<p
+  *ngFor="let aName of names; let index = index; let even = even"
+  [ngClass]="{
+    flashy: even,
+    caps: index === 2
+  }"
+>
+  {{ aName }}
+</p>
